@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Excel</title>
+  </head>
+  <body>
+    <form action="/import_excel" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="excel_file">Pilih File Excel:</label>
+      <input type="file" id="excel_file" name="excel_file" accept=".xlsx,.xls" />
+      <button type="submit">Upload dan Klasifikasikan</button>
+    </form>
+  </body>
+</html>

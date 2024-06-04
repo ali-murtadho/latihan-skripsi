@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/prediction" method="post">
+      {% csrf_token %}
+      <label for="Varietas">Varietas:</label>
+      <select id="Varietas" name="Varietas">
+        <option hidden>Pilih Varietas</option>
+        <option value="0.0">Beras Hitam</option>
+        <option value="0.6">Beras Merah</option>
+        <option value="0.4">IR 64</option>
+        <option value="0.8">Mi Kongga</option>
+        <option value="0.2">Panda Wangi</option>
+        <option value="1.0">Pandan Wangi</option>
+      </select>
+
+      <label for="Warna">Warna:</label>
+      <select id="Warna" name="Warna">
+        <option value="0.67">Merah</option>
+        <option value="0.0">Coklat</option>
+        <option value="0.33">Hitam</option>
+        <option value="1.0">Putih</option>
+      </select>
+
+      <label for="rasa">Rasa:</label>
+      <select id="rasa" name="rasa">
+        <option value="0.0">Pulen</option>
+        <option value="1.0">Sangat Pulen</option>
+      </select>
+
+      <label for="Musim">Musim:</label>
+      <select id="Musim" name="Musim">
+        <option value="0.0">Hujan</option>
+        <option value="1.0">Kemarau</option>
+      </select>
+
+      <label for="Penyakit">Penyakit:</label>
+      <select id="Penyakit" name="Penyakit">
+        <option value="0.0">Burung</option>
+        <option value="0.25">Penggerek Batang</option>
+        <option value="0.5">Tikus</option>
+        <option value="1.0">Wereng Hijau</option>
+        <option value="0.75">Wereng Coklat</option>
+      </select>
+
+      <label for="teknik">Teknik:</label>
+      <select id="teknik" name="teknik">
+        <option value="0.0">Jajar Legowo</option>
+        <option value="1.0">SRI</option>
+      </select>
+
+      <label for="PH">PH:</label>
+      <select id="PH" name="PH">
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <label for="boron">Boron:</label>
+      <input type="number" name="boron" id="boron" />
+      <label for="fosfor">Fosfor:</label>
+      <input type="number" name="fosfor" id="fosfor" />
+      <button type="submit" name="prediction">Klasifikasikan</button>
+    </form>
+    {% if prediction %}
+    <h2>Hasil Klasifikasi:</h2>
+    <p>Varietas: {{ varietas }}</p>
+    <p>Warna: {{ warna }}</p>
+    <p>Rasa: {{ rasa }}</p>
+    <p>Musim: {{ musim }}</p>
+    <p>Penyakit: {{ penyakit }}</p>
+    <p>Teknik: {{ teknik }}</p>
+    <p>PH: {{ ph }}</p>
+    <p>Boron: {{ boron }}</p>
+    <p>Fosfor: {{ fosfor }}</p>
+    <h3>Prediction: {{ prediction }}</h3>
+    {% endif %}
+  </body>
+</html>

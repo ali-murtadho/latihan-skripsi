@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Table</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Data Table</h1>
+      <!-- Render the HTML table here -->
+      <div class="table-responsive">{{ data_table | safe }}</div>
+    </div>
+    <div class="container">
+      <form action="/train" method="post">
+        {% csrf_token %}
+        <h2>Bangun Model</h2>
+        <button type="submit" name="train">Train</button>
+        <button type="submit" name="train_r">Train R</button>
+      </form>
+      <form action="/testing" method="post">
+        {% csrf_token %}
+        <h2>Prediksi</h2>
+        <button type="submit" name="test">Predict</button>
+        <button type="submit" name="test_r">Predict R</button>
+      </form>
+      <form action="/eval" method="post">
+        {% csrf_token %}
+        <h2>Evaluasi</h2>
+        <button type="submit" name="result">Evaluate</button>
+        <button type="submit" name="result_r">Evaluate R</button>
+        <h4>Accuracy: {{acc}}</h4>
+        <h4>F1 Score: {{f1}}</h4>
+        <h4>Precision: {{prec}}</h4>
+        <h4>Recall: {{rec}}</h4>
+        <h4>Overfitting Score: {{overfitting_score}}</h4>
+        <h4>Confusion Matrix:</h4>
+        <img src="{{ confusion_matrix }}" alt="Confusion Matrix" />
+      </form>
+    </div>
+  </body>
+</html>
