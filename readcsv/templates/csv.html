@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Import CSV and Predict</title>
+  </head>
+  <body>
+    <h1>Import CSV and Predict</h1>
+    <form action="{% url 'import_csv' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" name="csv_file" />
+      <button type="submit">Upload and Predict</button>
+    </form>
+
+    {% if predictions %}
+    <h2>Prediction Results</h2>
+    <table border="1">
+      <tr>
+        <th>Varietas</th>
+        <th>Fosfor</th>
+        <th>Boron</th>
+        <th>Warna</th>
+        <th>Rasa</th>
+        <th>Teknik</th>
+        <th>Musim</th>
+        <th>Penyakit</th>
+        <th>PH</th>
+        <th>Prediction</th>
+      </tr>
+      {% for row, prediction in predictions %}
+      <tr>
+        <td>{{ row.0 }}</td>
+        <td>{{ row.1 }}</td>
+        <td>{{ row.2 }}</td>
+        <td>{{ row.3 }}</td>
+        <td>{{ row.4 }}</td>
+        <td>{{ row.5 }}</td>
+        <td>{{ row.6 }}</td>
+        <td>{{ row.7 }}</td>
+        <td>{{ row.8 }}</td>
+        <td>{{ prediction }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </body>
+</html>

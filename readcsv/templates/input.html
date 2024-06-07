@@ -6,16 +6,17 @@
     <title>Document</title>
   </head>
   <body>
+    <p>Welcome, {{ request.user.username }}</p>
     <form action="/prediction" method="post">
       {% csrf_token %}
       <label for="Varietas">Varietas:</label>
       <select id="Varietas" name="Varietas">
         <option hidden>Pilih Varietas</option>
         <option value="0.0">Beras Hitam</option>
-        <option value="0.6">Beras Merah</option>
+        <option value="0.6">Ciheran</option>
         <option value="0.4">IR 64</option>
         <option value="0.8">Mi Kongga</option>
-        <option value="0.2">Panda Wangi</option>
+        <option value="0.2">Beras Merah</option>
         <option value="1.0">Pandan Wangi</option>
       </select>
 
@@ -67,18 +68,46 @@
       <input type="number" name="fosfor" id="fosfor" />
       <button type="submit" name="prediction">Klasifikasikan</button>
     </form>
-    {% if prediction %}
-    <h2>Hasil Klasifikasi:</h2>
-    <p>Varietas: {{ varietas }}</p>
-    <p>Warna: {{ warna }}</p>
-    <p>Rasa: {{ rasa }}</p>
-    <p>Musim: {{ musim }}</p>
-    <p>Penyakit: {{ penyakit }}</p>
-    <p>Teknik: {{ teknik }}</p>
-    <p>PH: {{ ph }}</p>
-    <p>Boron: {{ boron }}</p>
-    <p>Fosfor: {{ fosfor }}</p>
-    <h3>Prediction: {{ prediction }}</h3>
+    {% if results %}
+    <h2>Hasil Klasifikasi</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Varietas</th>
+          <th>Warna</th>
+          <th>Rasa</th>
+          <th>Musim</th>
+          <th>Penyakit</th>
+          <th>Teknik</th>
+          <th>PH</th>
+          <th>Boron</th>
+          <th>Fosfor</th>
+          <th>Prediction</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for result in results %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ result.varietas }}</td>
+          <td>{{ result.warna }}</td>
+          <td>{{ result.rasa }}</td>
+          <td>{{ result.musim }}</td>
+          <td>{{ result.penyakit }}</td>
+          <td>{{ result.teknik }}</td>
+          <td>{{ result.ph }}</td>
+          <td>{{ result.boron }}</td>
+          <td>{{ result.fosfor }}</td>
+          <td>{{ result.prediction }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
     {% endif %}
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Logout</button>
+    </form>
   </body>
 </html>

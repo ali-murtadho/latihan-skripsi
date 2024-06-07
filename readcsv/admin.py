@@ -1,7 +1,6 @@
-# from django.contrib import admin
-# from . models import Padi
+# readcsv/admin.py
 
-# # Register your models here.
-# class DataAdmin(admin.ModelAdmin):
-#     list_display = ('id', 'varietas', 'warna', 'rasa', 'teknik', 'musim', 'penyakit', 'ph', 'boron', 'fosfor', 'grade_mutu')
-# admin.site.register(Padi, DataAdmin)
+from django.contrib import admin
+from .models import ClassificationResult
+
+admin.site.register(ClassificationResult)

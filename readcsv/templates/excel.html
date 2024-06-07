@@ -1,3 +1,4 @@
+<!-- upload_excel.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,11 +7,30 @@
     <title>Upload Excel</title>
   </head>
   <body>
-    <form action="/import_excel" method="post" enctype="multipart/form-data">
+    <h1>Upload Excel File</h1>
+    <form action="{% url 'upload_excel' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      <label for="excel_file">Pilih File Excel:</label>
-      <input type="file" id="excel_file" name="excel_file" accept=".xlsx,.xls" />
-      <button type="submit">Upload dan Klasifikasikan</button>
+      <input type="file" name="excel_file" accept=".xlsx" />
+      <button type="submit" name="upload">Upload File</button>
     </form>
+
+    {% if prediction_data %}
+    <h2>Prediction Result</h2>
+    <table border="1">
+      <tr>
+        <th>Variabel</th>
+        <th>Nilai</th>
+      </tr>
+      {% for key, value in prediction_data.items %}
+      <tr>
+        <td>{{ key }}</td>
+        <td>{{ value }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %} {% if prediction_result %}
+    <h2>Klasifikasi</h2>
+    <p>{{ prediction_result }}</p>
+    {% endif %}
   </body>
 </html>

@@ -23,4 +23,9 @@ urlpatterns = [
     path('testing', views.testing, name='testing'),
     path('classification', views.classification, name='classification'),
     path('prediction', views.prediction, name='prediction'),
+    path('importcsv', views.importCsv, name='import_csv'),
+    path('importExcel', views.importExcel, name='import_excel'),
+    path('register', views.register, name='register'),
+    path('login', views.login_view, name='login'),
+    path('logout', views.logout_view, name='logout'),
 ]
